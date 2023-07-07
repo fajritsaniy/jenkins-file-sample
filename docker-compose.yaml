@@ -2,16 +2,10 @@
 version: "2.18.1"
 
 services:
-  robot-one:
-    container_name: robot-one
-    image: robot:1.0
-  robot-two:
-    container_name: robot-two
-    image: robot:1.0
-  robot-three:
+  my-robot-test-app:
     build:
       dockerfile: Dockerfile
     environment:
       - BROWSER=HeadlessChrome
-    container_name: robot-three
-    image: robot:2.0
+    container_name: my-robot-test-app
+    image: my-robot-test
