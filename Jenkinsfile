@@ -1,52 +1,52 @@
 pipeline {
     agent any
     environment {
-        GIT_URL = 'git@github.com:fajritsaniy/jenkins-file-sample.git'
-        BRANCH = 'master'
-        ROBOT = '/home/user/.local/bin/robot'
-        CHANNEL = '#jenkins'
-        IMAGE = 'my-robot-test'
-        CONTAINER = 'my-robot-test-app'
-        DOCKER_APP = '/usr/bin/docker'
+        GIT_URL = "git@github.com:fajritsaniy/jenkins-file-sample.git"
+        BRANCH = "master"
+        ROBOT = "/home/user/.local/bin/robot"
+        CHANNEL = "#jenkins"
+        IMAGE = "my-robot-test"
+        CONTAINER = "my-robot-test-app"
+        DOCKER_APP = "/usr/bin/docker"
     }
     stages{
         // For Docker Clean up
-        stage('Cleaning Up') {
+        stage("Cleaning Up") {
             steps {
-                echo 'Cleaning up'
-                sh '${DOCKER_APP} rm -f ${CONTAINER} || true'
+                echo "Cleaning up"
+                sh "${DOCKER_APP} rm -f ${CONTAINER} || true"
             }
         }
-        stage('Clone') {
+        stage("Clone") {
             steps {
-                echo 'Clone'
-                git branch: '${BRANCH}', url: '${GIT_URL}'
+                echo "Clone"
+                git branch: "${BRANCH}", url: "${GIT_URL}"
             }
         }
-        stage('Build') {
+        stage("Build") {
             steps {
-                echo 'Build'
-                sh '${DOCKER_APP} build -t ${IMAGE} .'
+                echo "Build"
+                sh "${DOCKER_APP} build -t ${IMAGE} ."
             }
         }
-        stage('Run'){
+        stage("Run"){
             steps {
-                echo 'Run Test'
-                sh '${DOCKER_APP} run -rm ${IMAGE}'
+                echo "Run Test"
+                sh "${DOCKER_APP} run -rm ${IMAGE}"
             }
         }
     }
     post {
         always {
-            echo 'This is always run!'
+            echo "This is always run!"
         }
         success {
-            echo 'Your build is deployed successfully!'
-            slackSend(channel: '${CHANNEL}', message: 'Your build is deployed successfully!')
+            echo "Your build is deployed successfully!"
+            slackSend(channel: "${CHANNEL}", message: "Your build is deployed successfully!")
         }
         failure {
-            echo 'Your build is failed!'
-            slackSend(channel: '${CHANNEL}', message: 'Your build is failed!')
+            echo "Your build is failed!"
+            slackSend(channel: "${CHANNEL}", message: "Your build is failed!")
         }
     }
 }
