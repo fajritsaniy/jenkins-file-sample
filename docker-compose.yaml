@@ -1,0 +1,17 @@
+# Docker Compose Version
+version: "2.18.1"
+
+services:
+  robot-one:
+    container_name: robot-one
+    image: robot:1.0
+  robot-two:
+    container_name: robot-two
+    image: robot:1.0
+  robot-three:
+    build:
+      dockerfile: Dockerfile
+    environment:
+      - BROWSER=HeadlessChrome
+    container_name: robot-three
+    image: robot:2.0
