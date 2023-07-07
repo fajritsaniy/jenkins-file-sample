@@ -4,7 +4,7 @@ pipeline {
         GIT_URL = 'git@github.com:fajritsaniy/jenkins-file-sample.git'
         BRANCH = 'master'
         ROBOT = '/home/user/.local/bin/robot'
-        CHANNEL = 'jenkins'
+        CHANNEL = '#jenkins'
         IMAGE = 'my-robot-test'
         CONTAINER = 'my-robot-test-app'
         DOCKER_APP = '/usr/bin/docker'
