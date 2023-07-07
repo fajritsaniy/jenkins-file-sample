@@ -32,7 +32,7 @@ pipeline {
         stage("Run"){
             steps {
                 echo "Run Test"
-                sh "sudo ${DOCKER_APP} run -rm ${IMAGE}"
+                sh "sudo ${DOCKER_APP} run --rm ${IMAGE}"
             }
         }
     }
