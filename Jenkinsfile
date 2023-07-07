@@ -14,7 +14,7 @@ pipeline {
         stage("Cleaning Up") {
             steps {
                 echo "Cleaning up"
-                sh "${DOCKER_APP} rm -f ${CONTAINER} || true"
+                sh "sudo ${DOCKER_APP} rm -f ${CONTAINER} || true"
             }
         }
         stage("Clone") {
@@ -26,13 +26,13 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Build"
-                sh "${DOCKER_APP} build -t ${IMAGE} ."
+                sh "sudo ${DOCKER_APP} build -t ${IMAGE} ."
             }
         }
         stage("Run"){
             steps {
                 echo "Run Test"
-                sh "${DOCKER_APP} run -rm ${IMAGE}"
+                sh "sudo ${DOCKER_APP} run -rm ${IMAGE}"
             }
         }
     }
