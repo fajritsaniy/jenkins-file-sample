@@ -20,7 +20,7 @@ pipeline {
         stage('Clone') {
             steps {
                 echo 'Clone'
-                git branch: '${BRANCH}', url:'${GIT_URL}'
+                git branch: '${BRANCH}', url: '${GIT_URL}'
             }
         }
         stage('Build') {
